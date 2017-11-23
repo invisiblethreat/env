@@ -38,6 +38,7 @@ A small usage example
 package env
 
 import (
+	"errors"
 	"net/url"
 	"os"
 	"strconv"
@@ -58,6 +59,8 @@ type Client interface {
 	String(key, fallback string) string
 	Strings(key string, fallback []string, seps ...string) []string
 	URL(key string, fallback *url.URL) *url.URL
+	RequireString(key string) (string, error)
+	RequireInt(key string) (int, error)
 }
 
 type client struct {
@@ -205,4 +208,28 @@ func Strings(key string, fallback []string, seps ...string) []string {
 // URL returns a URL from the ENV, or fallback URL if missing/invalid
 func URL(key string, fallback *url.URL) *url.URL {
 	return DefaultClient.URL(key, fallback)
+}
+
+// RequireString does not allow defaults.
+func RequireString(key string) (string, error) {
+	return DefaultClient.RequireString(key)
+}
+
+func (c *client) RequireString(key string) (string, error) {
+	if v := c.Getenv(key); v != "" {
+		return v, nil
+	}
+	return "", errors.New(key + " is a requried environment variable.")
+}
+
+// RequireInt does not allow defaults
+func RequireInt(key string) (int, error) {
+	return DefaultClient.RequireInt(key)
+}
+
+func (c *client) RequireInt(key string) (int, error) {
+	if i, err := strconv.Atoi(c.Getenv(key)); err == nil {
+		return i, nil
+	}
+	return 0, errors.New(key + " is a requried environment variable.")
 }

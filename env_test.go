@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/TV4/env"
+	"github.com/invisiblethreat/env"
 )
 
 func TestMapClient(t *testing.T) {
@@ -305,4 +305,36 @@ func ExampleURL() {
 
 	fmt.Println(env.URL("URL", &url.URL{Host: "fallback"}).String())
 	// Output: http://example.com/foo
+}
+
+func TestRequireString(t *testing.T) {
+	expected := "required"
+	os.Setenv("TEST_ENV", expected)
+	got, err := env.RequireString("TEST_ENV")
+
+	if err != nil {
+		t.Errorf("Got %s, wanted %s. %s", got, expected, err.Error())
+	}
+
+	os.Clearenv()
+	_, err = env.RequireString("TEST_ENV")
+	if err == nil {
+		t.Errorf("Expected an error condition.")
+	}
+}
+
+func TestRequireInt(t *testing.T) {
+	expected := "42"
+	os.Setenv("TEST_ENV", expected)
+	got, err := env.RequireInt("TEST_ENV")
+
+	if err != nil {
+		t.Errorf("Got %d, wanted %s. %s", got, expected, err.Error())
+	}
+
+	os.Clearenv()
+	_, err = env.RequireString("TEST_ENV")
+	if err == nil {
+		t.Errorf("Expected an error condition. " + err.Error())
+	}
 }
