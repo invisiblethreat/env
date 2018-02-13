@@ -338,3 +338,19 @@ func TestRequireInt(t *testing.T) {
 		t.Errorf("Expected an error condition. " + err.Error())
 	}
 }
+
+func TestRequireBool(t *testing.T) {
+	expected := "T"
+	os.Setenv("TEST_ENV", expected)
+	got, err := env.RequireBool("TEST_ENV")
+
+	if err != nil && got == true {
+		t.Errorf("Got %t, wanted %s. %s", got, expected, err.Error())
+	}
+
+	os.Clearenv()
+	_, err = env.RequireBool("TEST_ENV")
+	if err == nil {
+		t.Errorf("Expected an error condition. " + err.Error())
+	}
+}
