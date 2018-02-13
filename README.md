@@ -1,19 +1,15 @@
 # env
 
-[![Build Status](https://travis-ci.org/TV4/env.svg?branch=master)](https://travis-ci.org/TV4/env)
-[![Go Report Card](https://goreportcard.com/badge/github.com/TV4/env)](https://goreportcard.com/report/github.com/TV4/env)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/TV4/env)
-[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/TV4/env#license-mit)
+[![GoDoc](https://godoc.org/github.com/invisiblethreat/env?status.png)](https://godoc.org/github.com/invisiblethreat/env)
+[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/invisiblethreat/env#license-mit)
 
 Load environment variables into Go types, with fallback values.
-
-This package is meant to be used when configuring a [twelve-factor app](http://12factor.net/).
 
 The currently supported types are `bool`, `[]byte`, `time.Duration`, `float64`, `int`, `string`, `[]string` and `*url.URL`
 
 ## Installation
 
-    go get -u github.com/TV4/env
+    go get -u github.com/invisiblethreat/env
 
 ## Usage
 
@@ -52,6 +48,7 @@ true [102 111 111] 24m0s 11.2 2600 hello [a b] http://c7.se/
 ## License (MIT)
 
 Copyright (c) 2015-2017 TV4
+Copyright (c) 2018 Scott Walsh (derived work)
 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
