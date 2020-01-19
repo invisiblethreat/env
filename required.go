@@ -3,6 +3,7 @@ package env
 import (
 	"errors"
 	"fmt"
+	"net"
 	"net/url"
 	"strconv"
 	"strings"
@@ -74,12 +75,22 @@ func (c *client) RequireURL(key string) (*url.URL, error) {
 	if v := c.Getenv(key); v != "" {
 		u, err := url.Parse(v)
 		if err != nil {
-			return nil, nil
+			return u, nil
 		}
-
 		return u, nil
 	}
+	return nil, keyError(key)
+}
 
+func (c *client) RequireAddr(key string) (net.IP, error) {
+	if v := c.Getenv(key); v != "" {
+		addr := net.ParseIP(v)
+		if addr != nil {
+			return addr, nil
+		} else {
+			return nil, errors.New(fmt.Sprintf("%s is not a valid address", key))
+		}
+	}
 	return nil, keyError(key)
 }
 
@@ -121,6 +132,11 @@ func RequireStrings(key string) ([]string, error) {
 // RequireURL does not allow defaults
 func RequireURL(key string) (*url.URL, error) {
 	return DefaultClient.RequireURL(key)
+}
+
+// RequireAddr does not allow defaults
+func RequireAddr(key string) (net.IP, error) {
+	return DefaultClient.RequireAddr(key)
 }
 
 // KeyError returns an error string
