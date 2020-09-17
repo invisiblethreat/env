@@ -48,7 +48,8 @@ true [102 111 111] 24m0s 11.2 2600 hello [a b] http://c7.se/
 ## License (MIT)
 
 Copyright (c) 2015-2017 TV4
-Copyright (c) 2018 Scott Walsh (derived work)
+
+Copyright (c) 2018-2020 Scott Walsh (derived work)
 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
@@ -57,10 +58,10 @@ Copyright (c) 2018 Scott Walsh (derived work)
 > distribute, sublicense, and/or sell copies of the Software, and to
 > permit persons to whom the Software is furnished to do so, subject to
 > the following conditions:
-
+>
 > The above copyright notice and this permission notice shall be
 > included in all copies or substantial portions of the Software.
-
+>
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 > EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 > MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
