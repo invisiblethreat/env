@@ -38,6 +38,7 @@ A small usage example
 package env
 
 import (
+	"net"
 	"net/url"
 	"os"
 	"strconv"
@@ -67,6 +68,7 @@ type Client interface {
 	RequireString(key string) (string, error)
 	RequireStrings(key string, seps ...string) ([]string, error)
 	RequireURL(key string) (*url.URL, error)
+	RequireAddr(key string) (net.IP, error)
 }
 
 type client struct {

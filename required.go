@@ -136,6 +136,7 @@ func RequireURL(key string) (*url.URL, error) {
 
 // RequireAddr does not allow defaults
 func RequireAddr(key string) (net.IP, error) {
+
 	return DefaultClient.RequireAddr(key)
 }
 
